@@ -93,17 +93,8 @@
     header{padding:16px 20px;}
   }
   @media (max-width:700px){
-    [style*="grid-template-columns:1.05fr 1fr"],
-    [style*="grid-template-columns:1fr 1fr"],
-    [style*="grid-template-columns:repeat(2,"],
-    [style*="grid-template-columns:repeat(4,"],
-    [style*="grid-template-columns:0.85fr 1.15fr"],
-    [style*="grid-template-columns:1.2fr 0.8fr"],
-    [style*="grid-template-columns:1.1fr 0.9fr"],
-    [style*="grid-template-columns:1.3fr 0.7fr 0.7fr 1.3fr"]
-    { grid-template-columns:1fr !important; }
-
-    [style*="grid-column:1 / -1;display:flex"]{ flex-wrap:wrap !important; min-width:0 !important; }
+    .g2, .g4{ grid-template-columns:1fr !important; }
+    .ph-row{ flex-wrap:wrap !important; }
 
     h1{font-size:32px !important; line-height:1.2 !important;}
     h2{font-size:26px !important;}
@@ -138,7 +129,7 @@
       <path class="blob-path b2" d="M-100,420 C200,340 420,520 700,420 C980,320 1180,480 1500,400" fill="none" stroke="#F6B130" stroke-width="2" opacity="0.30"/>
     </svg>
   </div>
-  <div class="wrap" style="padding:96px 0 84px; display:grid; grid-template-columns:1.05fr 1fr; gap:72px; align-items:start;">
+  <div class="wrap g2" style="padding:96px 0 84px; display:grid; grid-template-columns:1.05fr 1fr; gap:72px; align-items:start;">
     <div class="reveal">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px">
         <span style="width:26px;height:1px;background:var(--teal);display:block"></span>
@@ -158,7 +149,7 @@
         <span class="ph-tag">placeholder list</span>
       </div>
       <p style="font-size:14px;line-height:1.55;color:var(--ink-faint);margin:0 0 24px">Each sector page covers the obligations, common gaps and typical timelines we see.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         <a href="#sectors" class="sector-picker-item" style="display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--line-soft);border-radius:10px;background:var(--bg)">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
           <span style="font-size:16px;font-weight:600;color:var(--navy)">Schools</span>
@@ -189,7 +180,7 @@
 </section>
 
 <section style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)">
-  <div class="wrap reveal" style="padding:34px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+  <div class="wrap reveal g4" style="padding:34px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
     <div style="display:flex;flex-direction:column;gap:4px">
       <span class="stat-num" data-count="10" data-suffix="+ years">0</span>
       <span style="font-size:13px;color:var(--ink-faint)">advising UK organisations</span>
@@ -206,7 +197,7 @@
       <span class="stat-num" data-count="1" data-suffix=" day">0</span>
       <span style="font-size:13px;color:var(--ink-faint)">typical response to a query</span>
     </div>
-    <div style="grid-column:1 / -1;display:flex;align-items:center;gap:10px;margin-top:2px">
+    <div class="ph-row" style="grid-column:1 / -1;display:flex;align-items:center;gap:10px;margin-top:2px">
       <span class="ph-tag">placeholder figures</span>
       <span style="font-size:12px;color:var(--ink-faintest)">Replace with verified numbers before publication.</span>
     </div>
@@ -214,13 +205,13 @@
 </section>
 
 <section class="wrap reveal" style="padding:96px 0">
-  <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start">
+  <div class="g2" style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start">
     <div>
       <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">The Pathway</span>
       <h2 style="font-size:36px;line-height:1.2;font-weight:600;color:var(--navy);margin:14px 0 18px;letter-spacing:-0.015em">Four steps, and you always know which one you're on</h2>
       <p style="font-size:16px;line-height:1.65;color:var(--ink-soft);margin:0">Most SMEs reach step three within six weeks. Nothing is billed before you've seen the plan.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff">
+    <div class="g4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff">
       <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--line)">
         <span style="font-size:12px;font-weight:600;color:var(--teal)">01</span>
         <span style="font-size:17px;font-weight:600;color:var(--navy)">Discovery call</span>
@@ -257,7 +248,7 @@
       </div>
       <a href="#sectors" style="font-size:15px;font-weight:500;white-space:nowrap">All sectors →</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+    <div class="g4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
       <a href="#sectors" class="sector-card reveal" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;min-height:280px">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6" style="margin-bottom:16px"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
         <span style="font-size:20px;font-weight:600;color:var(--navy);margin-bottom:12px">Schools &amp; academies</span>
@@ -289,7 +280,7 @@
 <section id="services" class="wrap reveal" style="padding:96px 0">
   <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">Services</span>
   <h2 style="font-size:36px;line-height:1.2;font-weight:600;color:var(--navy);margin:14px 0 48px;letter-spacing:-0.015em;max-width:640px">Four ways we work with SMEs</h2>
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px">
+  <div class="g2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px">
     <div class="service-card" style="display:flex;gap:24px;padding:34px;border:1px solid var(--line);border-radius:12px;background:#fff">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#F6B130" stroke-width="1.8" style="margin-top:2px"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.3-4.3"/></svg>
       <div>
@@ -326,7 +317,7 @@
 </section>
 
 <section id="about" style="background:var(--panel);border-top:1px solid var(--line)">
-  <div class="wrap reveal" style="padding:88px 0;display:grid;grid-template-columns:1.2fr 0.8fr;gap:72px;align-items:center">
+  <div class="wrap reveal g2" style="padding:88px 0;display:grid;grid-template-columns:1.2fr 0.8fr;gap:72px;align-items:center">
     <div>
       <span class="ph-tag">placeholder testimonial</span>
       <blockquote style="font-size:26px;line-height:1.5;font-weight:400;color:var(--navy);margin:24px 0 26px;max-width:660px">"We'd put off data protection for two years because we assumed it meant a big project. It took six weeks and most of it was tidying things we already had."</blockquote>
@@ -337,7 +328,7 @@
     </div>
     <div>
       <span style="font-size:13px;color:var(--ink-faintest);display:block;margin-bottom:20px">Trusted by SMEs across the UK <span class="ph-tag" style="margin-left:4px">placeholder logos</span></span>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
         <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="10" width="18" height="4" rx="2"/></svg>Client</span>
         <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="7"/></svg>Client</span>
         <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 21h18L12 3Z"/></svg>Client</span>
@@ -355,7 +346,7 @@
       <path class="blob-path" d="M-60,80 C260,10 420,180 700,100 C980,20 1160,200 1500,120" fill="none" stroke="#F6B130" stroke-width="2"/>
     </svg>
   </div>
-  <div class="wrap reveal" style="padding:80px 0;display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center">
+  <div class="wrap reveal g2" style="padding:80px 0;display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center">
     <div>
       <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold)">Free download</span>
       <h2 style="font-size:34px;line-height:1.25;font-weight:600;margin:14px 0 14px;letter-spacing:-0.015em;max-width:520px">The SME GDPR readiness checklist</h2>
@@ -373,7 +364,7 @@
 </section>
 
 <footer id="contact" style="background:var(--bg);border-top:1px solid var(--line)">
-  <div class="wrap" style="padding:72px 0 32px;display:grid;grid-template-columns:1.3fr 0.7fr 0.7fr 1.3fr;gap:56px">
+  <div class="wrap g4" style="padding:72px 0 32px;display:grid;grid-template-columns:1.3fr 0.7fr 0.7fr 1.3fr;gap:56px">
     <div>
       <img src="assets/p2p-logo.png" alt="Pathway 2 Privacy" style="height:52px;display:block;margin-bottom:20px">
       <p style="font-size:14px;line-height:1.65;color:var(--ink-faint);margin:0;max-width:260px">UK GDPR and data protection support for small and medium organisations.</p>
