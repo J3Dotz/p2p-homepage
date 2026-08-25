@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pathway 2 Privacy — Direction 1: Calm &amp; Credible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#23406E; --navy-deep:#1B3358; --teal:#2596C5; --gold:#F6B130;
+    --bg:#FCFCFA; --panel:#F7F6F2; --line:#EDEBE4; --line-soft:#E3E0D8;
+    --ink:#2B3038; --ink-soft:#5C6472; --ink-faint:#7A828E; --ink-faintest:#9AA0AA;
+    --ph-badge:#8A6A16; --ph-badge-bg:#FDF2DC; --ph-badge-line:#F6DCA8;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Poppins',system-ui,sans-serif; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased;}
+  a{color:var(--teal); text-decoration:none;}
+  ::selection{background:var(--gold); color:var(--navy);}
+  img{max-width:100%;}
+  .wrap{max-width:1440px; margin:0 auto; padding-left:64px; padding-right:64px;}
+  @media (max-width:860px){.wrap{padding-left:24px; padding-right:24px;}}
+
+  .devbar{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 32px; background:var(--navy); color:#fff; font-size:12px;}
+  .devbar b{font-size:13px; font-weight:600;}
+  .devbar .tag{font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold);}
+
+  header{display:flex; align-items:center; justify-content:space-between; gap:40px; padding:20px 64px; border-bottom:1px solid var(--line); background:rgba(252,252,250,.92); backdrop-filter:blur(6px); position:sticky; top:0; z-index:20; transition:box-shadow .25s ease;}
+  header.scrolled{box-shadow:0 8px 24px -18px rgba(35,64,110,.35);}
+  header img{height:42px; display:block;}
+  nav{display:flex; align-items:center; gap:32px; font-size:15px; font-weight:500; color:#3C4350;}
+  nav a{color:#3C4350; position:relative;}
+  nav a::after{content:''; position:absolute; left:0; right:0; bottom:-4px; height:2px; background:var(--teal); transform:scaleX(0); transform-origin:left; transition:transform .2s ease;}
+  nav a:hover{color:var(--navy);}
+  nav a:hover::after{transform:scaleX(1);}
+  .cta-btn{background:var(--navy); color:#fff; font-size:14px; font-weight:600; padding:13px 24px; border-radius:6px; display:inline-block; transition:background .18s ease, transform .18s ease;}
+  .cta-btn:hover{background:var(--navy-deep); color:#fff; transform:translateY(-1px);}
+  @media (max-width:900px){nav{display:none;}}
+
+  /* decorative hero graphic */
+  .hero{position:relative; overflow:hidden;}
+  .hero-blobs{position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.55;}
+  .hero-blobs svg{width:100%; height:100%;}
+  .blob-path{animation:drift 22s ease-in-out infinite alternate;}
+  .blob-path.b2{animation-duration:28s; animation-delay:-6s;}
+  @keyframes drift{ 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(18px,-14px) scale(1.04);} }
+  @media (prefers-reduced-motion:reduce){ .blob-path{animation:none;} }
+
+  section{position:relative; z-index:1;}
+
+  .icon{width:22px; height:22px; display:block; flex-shrink:0;}
+
+  /* placeholder tag */
+  .ph-tag{font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ph-badge); background:var(--ph-badge-bg); border:1px solid var(--ph-badge-line); padding:3px 7px; border-radius:3px; white-space:nowrap;}
+
+  /* photo placeholder component: looks designed, not blank */
+  .photo-ph{position:relative; border-radius:var(--radius); overflow:hidden; background:linear-gradient(135deg,#DCE9F5 0%,#BFE0EC 45%,#F6DCA8 100%); display:flex; align-items:flex-end; padding:16px; min-height:200px;}
+  .photo-ph::before{content:''; position:absolute; inset:0; background-image:radial-gradient(circle at 20% 25%, rgba(35,64,110,.10) 0, transparent 55%), radial-gradient(circle at 80% 75%, rgba(37,150,197,.14) 0, transparent 50%);}
+  .photo-ph .ph-cap{position:relative; z-index:1; font-size:12px; color:var(--navy); background:rgba(255,255,255,.82); padding:6px 10px; border-radius:5px; font-weight:500;}
+  .avatar-ph{width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#DFE4EC,#C9D6E6); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .avatar-ph svg{width:20px; height:20px; fill:var(--navy); opacity:.5;}
+  .logo-ph{height:56px; border-radius:8px; background:linear-gradient(135deg,#EFEDE4,#E2DECF); display:flex; align-items:center; justify-content:center; gap:6px; color:var(--ink-faint); font-size:11px; font-weight:600; letter-spacing:.04em;}
+  .logo-ph svg{width:16px; height:16px; opacity:.55;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+  .stat-num{font-size:30px; font-weight:600; color:var(--navy); letter-spacing:-.01em; display:inline-block; font-variant-numeric:tabular-nums;}
+
+  .sector-card, .service-card{transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;}
+  .sector-card:hover{border-color:var(--teal); box-shadow:0 12px 30px -20px rgba(35,64,110,.35); transform:translateY(-2px);}
+  .service-card:hover{border-color:var(--teal); box-shadow:0 10px 24px -18px rgba(35,64,110,.28);}
+  .sector-picker-item{transition:border-color .18s ease, background .18s ease;}
+  .sector-picker-item:hover{border-color:var(--teal); background:#F4FAFD;}
+  .footer-link{color:var(--ink-faint); transition:color .15s ease;}
+  .footer-link:hover{color:var(--navy);}
+  .send-btn{transition:background .18s ease;}
+  .send-btn:hover{background:#E5A324 !important;}
+  .signup-btn:hover{background:var(--navy-deep) !important;}
+</style>
+</head>
+<body>
+
+<div class="devbar">
+  <div><b>Direction 1</b> &nbsp; Calm &amp; credible — soft, professional, low-motion</div>
+  <span class="tag">design foundation · content not final</span>
+</div>
+
+<header id="siteHeader">
+  <img src="assets/p2p-logo.png" alt="Pathway 2 Privacy">
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#sectors">Sectors</a>
+    <a href="#resources">Resources</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="cta-btn">Book a discovery call</a>
+</header>
+
+<section class="hero">
+  <div class="hero-blobs" aria-hidden="true">
+    <svg viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice">
+      <path class="blob-path" d="M-80,120 C220,20 380,220 640,140 C900,60 1080,260 1460,160" fill="none" stroke="#2596C5" stroke-width="2" opacity="0.35"/>
+      <path class="blob-path b2" d="M-100,420 C200,340 420,520 700,420 C980,320 1180,480 1500,400" fill="none" stroke="#F6B130" stroke-width="2" opacity="0.30"/>
+    </svg>
+  </div>
+  <div class="wrap" style="padding:96px 0 84px; display:grid; grid-template-columns:1.05fr 1fr; gap:72px; align-items:start;">
+    <div class="reveal">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px">
+        <span style="width:26px;height:1px;background:var(--teal);display:block"></span>
+        <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">UK GDPR &amp; data protection</span>
+      </div>
+      <h1 style="font-size:56px;line-height:1.1;font-weight:600;letter-spacing:-0.02em;color:var(--navy);margin:0 0 24px;">Data protection that fits the way your organisation actually works</h1>
+      <p style="font-size:19px;line-height:1.6;color:var(--ink-soft);margin:0 0 36px;max-width:520px;">We sit alongside your team, sort the records and processes that matter, and stay reachable when something comes up.</p>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <a href="#contact" class="cta-btn" style="font-size:15px;padding:16px 30px;">Book a discovery call</a>
+        <span style="font-size:14px;color:var(--ink-faintest)">30 minutes, no charge, no pitch deck</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:34px 34px 30px;box-shadow:0 1px 2px rgba(35,64,110,0.04),0 12px 32px -20px rgba(35,64,110,0.18)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px">
+        <h2 style="font-size:20px;font-weight:600;color:var(--navy);margin:0">Start with your sector</h2>
+        <span class="ph-tag">placeholder list</span>
+      </div>
+      <p style="font-size:14px;line-height:1.55;color:var(--ink-faint);margin:0 0 24px">Each sector page covers the obligations, common gaps and typical timelines we see.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <a href="#sectors" class="sector-picker-item" style="display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--line-soft);border-radius:10px;background:var(--bg)">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
+          <span style="font-size:16px;font-weight:600;color:var(--navy)">Schools</span>
+          <span style="font-size:13px;line-height:1.45;color:var(--ink-faint)">Safeguarding data, MIS, parental requests</span>
+        </a>
+        <a href="#sectors" class="sector-picker-item" style="display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--line-soft);border-radius:10px;background:var(--bg)">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6"><path d="M12 21s-7-4.4-9.5-9C.8 8.4 2.8 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.2 0 5.2 3.4 3.5 7-2.5 4.6-9.5 9-9.5 9Z"/><path d="M8 12h3l1-2 2 4 1-2h1"/></svg>
+          <span style="font-size:16px;font-weight:600;color:var(--navy)">Healthcare</span>
+          <span style="font-size:13px;line-height:1.45;color:var(--ink-faint)">Special category data, DSPT, sharing</span>
+        </a>
+        <a href="#sectors" class="sector-picker-item" style="display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--line-soft);border-radius:10px;background:var(--bg)">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6"><rect x="3" y="9" width="18" height="11" rx="1.5"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>
+          <span style="font-size:16px;font-weight:600;color:var(--navy)">Hospitality</span>
+          <span style="font-size:13px;line-height:1.45;color:var(--ink-faint)">Bookings, CCTV, marketing consent</span>
+        </a>
+        <a href="#sectors" class="sector-picker-item" style="display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--line-soft);border-radius:10px;background:var(--bg)">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6"><path d="M7 18a4.5 4.5 0 0 1-.5-9 5.5 5.5 0 0 1 10.8-1.3A4 4 0 0 1 17 18H7Z"/></svg>
+          <span style="font-size:16px;font-weight:600;color:var(--navy)">SaaS</span>
+          <span style="font-size:13px;line-height:1.45;color:var(--ink-faint)">Processor duties, DPAs, transfers</span>
+        </a>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-faint)">
+        <span>Not on the list?</span>
+        <a href="#contact" style="font-weight:500">Tell us what you do →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)">
+  <div class="wrap reveal" style="padding:34px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <span class="stat-num" data-count="10" data-suffix="+ years">0</span>
+      <span style="font-size:13px;color:var(--ink-faint)">advising UK organisations</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--line-soft);padding-left:32px">
+      <span class="stat-num" data-count="200" data-suffix="+">0</span>
+      <span style="font-size:13px;color:var(--ink-faint)">engagements delivered</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--line-soft);padding-left:32px">
+      <span class="stat-num" data-count="6" data-suffix=" sectors">0</span>
+      <span style="font-size:13px;color:var(--ink-faint)">with dedicated guidance</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--line-soft);padding-left:32px">
+      <span class="stat-num" data-count="1" data-suffix=" day">0</span>
+      <span style="font-size:13px;color:var(--ink-faint)">typical response to a query</span>
+    </div>
+    <div style="grid-column:1 / -1;display:flex;align-items:center;gap:10px;margin-top:2px">
+      <span class="ph-tag">placeholder figures</span>
+      <span style="font-size:12px;color:var(--ink-faintest)">Replace with verified numbers before publication.</span>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal" style="padding:96px 0">
+  <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start">
+    <div>
+      <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">The Pathway</span>
+      <h2 style="font-size:36px;line-height:1.2;font-weight:600;color:var(--navy);margin:14px 0 18px;letter-spacing:-0.015em">Four steps, and you always know which one you're on</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--ink-soft);margin:0">Most SMEs reach step three within six weeks. Nothing is billed before you've seen the plan.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff">
+      <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--line)">
+        <span style="font-size:12px;font-weight:600;color:var(--teal)">01</span>
+        <span style="font-size:17px;font-weight:600;color:var(--navy)">Discovery call</span>
+        <span style="font-size:13px;line-height:1.55;color:var(--ink-faint)">We learn what data you hold and what's worrying you.</span>
+      </div>
+      <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--line)">
+        <span style="font-size:12px;font-weight:600;color:var(--teal)">02</span>
+        <span style="font-size:17px;font-weight:600;color:var(--navy)">Assessment</span>
+        <span style="font-size:13px;line-height:1.55;color:var(--ink-faint)">A structured review of records, systems and suppliers.</span>
+      </div>
+      <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--line)">
+        <span style="font-size:12px;font-weight:600;color:var(--teal)">03</span>
+        <span style="font-size:17px;font-weight:600;color:var(--navy)">Priority plan</span>
+        <span style="font-size:13px;line-height:1.55;color:var(--ink-faint)">Fixes ordered by risk, with owners and realistic dates.</span>
+      </div>
+      <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;font-weight:600;color:var(--teal)">04</span>
+        <span style="font-size:17px;font-weight:600;color:var(--navy)">Ongoing support</span>
+        <span style="font-size:13px;line-height:1.55;color:var(--ink-faint)">A named contact for questions, incidents and reviews.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sectors" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap" style="padding:96px 0">
+    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:44px">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+          <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">Sectors</span>
+          <span class="ph-tag">placeholder sectors</span>
+        </div>
+        <h2 style="font-size:36px;line-height:1.2;font-weight:600;color:var(--navy);margin:0;letter-spacing:-0.015em">Guidance written for your world, not a generic checklist</h2>
+      </div>
+      <a href="#sectors" style="font-size:15px;font-weight:500;white-space:nowrap">All sectors →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+      <a href="#sectors" class="sector-card reveal" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;min-height:280px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6" style="margin-bottom:16px"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
+        <span style="font-size:20px;font-weight:600;color:var(--navy);margin-bottom:12px">Schools &amp; academies</span>
+        <span style="font-size:14px;line-height:1.6;color:var(--ink-faint);flex:1">Pupil records, safeguarding files, MIS suppliers and subject access requests from parents.</span>
+        <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:22px">Schools guidance →</span>
+      </a>
+      <a href="#sectors" class="sector-card reveal" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;min-height:280px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6" style="margin-bottom:16px"><path d="M12 21s-7-4.4-9.5-9C.8 8.4 2.8 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.2 0 5.2 3.4 3.5 7-2.5 4.6-9.5 9-9.5 9Z"/><path d="M8 12h3l1-2 2 4 1-2h1"/></svg>
+        <span style="font-size:20px;font-weight:600;color:var(--navy);margin-bottom:12px">Healthcare &amp; care</span>
+        <span style="font-size:14px;line-height:1.6;color:var(--ink-faint);flex:1">Special category data, lawful bases for sharing, retention and DSPT expectations.</span>
+        <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:22px">Healthcare guidance →</span>
+      </a>
+      <a href="#sectors" class="sector-card reveal" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;min-height:280px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6" style="margin-bottom:16px"><rect x="3" y="9" width="18" height="11" rx="1.5"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>
+        <span style="font-size:20px;font-weight:600;color:var(--navy);margin-bottom:12px">Hospitality &amp; leisure</span>
+        <span style="font-size:14px;line-height:1.6;color:var(--ink-faint);flex:1">Booking platforms, CCTV, loyalty and marketing consent across multiple sites.</span>
+        <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:22px">Hospitality guidance →</span>
+      </a>
+      <a href="#sectors" class="sector-card reveal" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;min-height:280px">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#23406E" stroke-width="1.6" style="margin-bottom:16px"><path d="M7 18a4.5 4.5 0 0 1-.5-9 5.5 5.5 0 0 1 10.8-1.3A4 4 0 0 1 17 18H7Z"/></svg>
+        <span style="font-size:20px;font-weight:600;color:var(--navy);margin-bottom:12px">SaaS &amp; technology</span>
+        <span style="font-size:14px;line-height:1.6;color:var(--ink-faint);flex:1">Processor obligations, DPAs, international transfers and buyer security questionnaires.</span>
+        <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:22px">SaaS guidance →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="wrap reveal" style="padding:96px 0">
+  <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">Services</span>
+  <h2 style="font-size:36px;line-height:1.2;font-weight:600;color:var(--navy);margin:14px 0 48px;letter-spacing:-0.015em;max-width:640px">Four ways we work with SMEs</h2>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px">
+    <div class="service-card" style="display:flex;gap:24px;padding:34px;border:1px solid var(--line);border-radius:12px;background:#fff">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#F6B130" stroke-width="1.8" style="margin-top:2px"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.3-4.3"/></svg>
+      <div>
+        <h3 style="font-size:20px;font-weight:600;color:var(--navy);margin:0 0 10px">Risk assessment</h3>
+        <p style="font-size:15px;line-height:1.65;color:var(--ink-faint);margin:0 0 16px">A clear picture of where personal data sits, who touches it, and which gaps carry real regulatory or reputational risk.</p>
+        <a href="#services" style="font-size:14px;font-weight:600">Learn more →</a>
+      </div>
+    </div>
+    <div class="service-card" style="display:flex;gap:24px;padding:34px;border:1px solid var(--line);border-radius:12px;background:#fff">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#F6B130" stroke-width="1.8" style="margin-top:2px"><path d="M9 11.5 11 13.5 15.5 8"/><rect x="3.5" y="3.5" width="17" height="17" rx="3"/></svg>
+      <div>
+        <h3 style="font-size:20px;font-weight:600;color:var(--navy);margin:0 0 10px">Compliance remediation</h3>
+        <p style="font-size:15px;line-height:1.65;color:var(--ink-faint);margin:0 0 16px">We work through the priority plan with you — policies, records, contracts and supplier checks — rather than handing over a document.</p>
+        <a href="#services" style="font-size:14px;font-weight:600">Learn more →</a>
+      </div>
+    </div>
+    <div class="service-card" style="display:flex;gap:24px;padding:34px;border:1px solid var(--line);border-radius:12px;background:#fff">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#F6B130" stroke-width="1.8" style="margin-top:2px"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9" r="2.3"/><path d="M15 20c0-2.5 1.6-4.6 3.8-5.4"/></svg>
+      <div>
+        <h3 style="font-size:20px;font-weight:600;color:var(--navy);margin:0 0 10px">Training &amp; workshops</h3>
+        <p style="font-size:15px;line-height:1.65;color:var(--ink-faint);margin:0 0 16px">Short, sector-specific sessions for staff and trustees, built around the situations your team actually meets.</p>
+        <a href="#services" style="font-size:14px;font-weight:600">Learn more →</a>
+      </div>
+    </div>
+    <div class="service-card" style="display:flex;gap:24px;padding:34px;border:1px solid var(--line);border-radius:12px;background:#fff">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#F6B130" stroke-width="1.8" style="margin-top:2px"><path d="M4 17v-4a8 8 0 0 1 16 0v4"/><rect x="2.5" y="15" width="4" height="6" rx="1.4"/><rect x="17.5" y="15" width="4" height="6" rx="1.4"/></svg>
+      <div>
+        <h3 style="font-size:20px;font-weight:600;color:var(--navy);margin:0 0 10px">Ongoing support</h3>
+        <p style="font-size:15px;line-height:1.65;color:var(--ink-faint);margin:0 0 16px">Retained data protection cover: a named adviser, annual reviews, and someone to call the day an incident lands.</p>
+        <a href="#services" style="font-size:14px;font-weight:600">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--panel);border-top:1px solid var(--line)">
+  <div class="wrap reveal" style="padding:88px 0;display:grid;grid-template-columns:1.2fr 0.8fr;gap:72px;align-items:center">
+    <div>
+      <span class="ph-tag">placeholder testimonial</span>
+      <blockquote style="font-size:26px;line-height:1.5;font-weight:400;color:var(--navy);margin:24px 0 26px;max-width:660px">"We'd put off data protection for two years because we assumed it meant a big project. It took six weeks and most of it was tidying things we already had."</blockquote>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="avatar-ph"><svg viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5Z"/></svg></span>
+        <span style="font-size:14px;line-height:1.5;color:var(--ink-faint)">Operations Director<br>Multi-site care provider, South East</span>
+      </div>
+    </div>
+    <div>
+      <span style="font-size:13px;color:var(--ink-faintest);display:block;margin-bottom:20px">Trusted by SMEs across the UK <span class="ph-tag" style="margin-left:4px">placeholder logos</span></span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="10" width="18" height="4" rx="2"/></svg>Client</span>
+        <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="7"/></svg>Client</span>
+        <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 21h18L12 3Z"/></svg>Client</span>
+        <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>Client</span>
+        <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 22,20 2,20"/></svg>Client</span>
+        <span class="logo-ph"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="12" rx="10" ry="6"/></svg>Client</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resources" style="background:var(--navy); color:#fff; position:relative; overflow:hidden;">
+  <div class="hero-blobs" aria-hidden="true" style="opacity:.25">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice">
+      <path class="blob-path" d="M-60,80 C260,10 420,180 700,100 C980,20 1160,200 1500,120" fill="none" stroke="#F6B130" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="wrap reveal" style="padding:80px 0;display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center">
+    <div>
+      <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold)">Free download</span>
+      <h2 style="font-size:34px;line-height:1.25;font-weight:600;margin:14px 0 14px;letter-spacing:-0.015em;max-width:520px">The SME GDPR readiness checklist</h2>
+      <p style="font-size:16px;line-height:1.65;color:#C6D5E8;margin:0;max-width:500px">Twenty-eight checks across records, contracts, staff and security — the same list we use on day one of an assessment.</p>
+    </div>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);border-radius:12px;padding:28px">
+      <label style="font-size:13px;color:#C6D5E8;display:block;margin-bottom:8px">Work email</label>
+      <div style="display:flex;gap:12px">
+        <input type="email" placeholder="you@organisation.co.uk" style="flex:1;font-family:'Poppins',sans-serif;font-size:15px;padding:14px 16px;border-radius:6px;border:1px solid rgba(255,255,255,0.2);background:#fff;color:var(--ink)">
+        <button type="button" class="send-btn" style="font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;color:var(--navy);background:var(--gold);border:none;border-radius:6px;padding:14px 24px;cursor:pointer">Send it to me</button>
+      </div>
+      <span style="font-size:12px;color:#A9C4E4;display:block;margin-top:12px">One email with the checklist. Unsubscribe any time.</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" style="background:var(--bg);border-top:1px solid var(--line)">
+  <div class="wrap" style="padding:72px 0 32px;display:grid;grid-template-columns:1.3fr 0.7fr 0.7fr 1.3fr;gap:56px">
+    <div>
+      <img src="assets/p2p-logo.png" alt="Pathway 2 Privacy" style="height:52px;display:block;margin-bottom:20px">
+      <p style="font-size:14px;line-height:1.65;color:var(--ink-faint);margin:0;max-width:260px">UK GDPR and data protection support for small and medium organisations.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:13px;font-weight:600;color:var(--navy);letter-spacing:0.04em">Services</span>
+      <a href="#services" class="footer-link" style="font-size:14px">Risk assessment</a>
+      <a href="#services" class="footer-link" style="font-size:14px">Compliance remediation</a>
+      <a href="#services" class="footer-link" style="font-size:14px">Training &amp; workshops</a>
+      <a href="#services" class="footer-link" style="font-size:14px">Ongoing support</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:13px;font-weight:600;color:var(--navy);letter-spacing:0.04em">Company</span>
+      <a href="#sectors" class="footer-link" style="font-size:14px">Sectors</a>
+      <a href="#resources" class="footer-link" style="font-size:14px">Resources</a>
+      <a href="#about" class="footer-link" style="font-size:14px">About</a>
+      <a href="#contact" class="footer-link" style="font-size:14px">Contact</a>
+    </div>
+    <div>
+      <span style="font-size:13px;font-weight:600;color:var(--navy);letter-spacing:0.04em;display:block;margin-bottom:12px">Monthly practice note</span>
+      <p style="font-size:14px;line-height:1.6;color:var(--ink-faint);margin:0 0 16px">What changed in UK data protection, and what it means for a 40-person organisation.</p>
+      <div style="display:flex;gap:10px">
+        <input type="email" placeholder="Email address" style="flex:1;font-family:'Poppins',sans-serif;font-size:14px;padding:12px 14px;border-radius:6px;border:1px solid var(--line-soft);background:#fff;color:var(--ink)">
+        <button type="button" class="signup-btn" style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#fff;background:var(--navy);border:none;border-radius:6px;padding:12px 20px;cursor:pointer">Sign up</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:24px;font-size:14px;color:var(--ink-faint)">
+        <span>hello@pathway2privacy.co.uk <span class="ph-tag" style="margin-left:4px">placeholder</span></span>
+        <span>0000 000 0000</span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="padding:20px 0 40px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:13px;color:var(--ink-faintest)">
+    <span>© 2026 Pathway 2 Privacy Ltd. Registered in England.</span>
+    <div style="display:flex;gap:24px">
+      <a href="#contact" class="footer-link" style="color:var(--ink-faintest)">Privacy notice</a>
+      <a href="#contact" class="footer-link" style="color:var(--ink-faintest)">Cookies</a>
+      <a href="#contact" class="footer-link" style="color:var(--ink-faintest)">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // header shadow on scroll
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el, i){ el.style.transitionDelay = (i % 4) * 60 + 'ms'; io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // stat count-up
+  var statEls = document.querySelectorAll('.stat-num');
+  function animateCount(el){
+    var target = parseInt(el.dataset.count, 10);
+    var suffix = el.dataset.suffix || '';
+    var start = null;
+    var dur = 900;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var val = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      el.textContent = val + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var statIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateCount(e.target); statIO.unobserve(e.target); }
+      });
+    }, {threshold:0.5});
+    statEls.forEach(function(el){ statIO.observe(el); });
+  } else {
+    statEls.forEach(function(el){ el.textContent = el.dataset.count + (el.dataset.suffix || ''); });
+  }
+</script>
+</body>
+</html>
