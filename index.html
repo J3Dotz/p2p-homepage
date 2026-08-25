@@ -6,26 +6,42 @@
 <title>Pathway 2 Privacy — Homepage Directions</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body{margin:0; font-family:'Poppins',sans-serif; background:#F3F5F8; color:#1A2A44; display:flex; align-items:center; justify-content:center; min-height:100vh;}
-  .card-wrap{display:flex; gap:24px; padding:40px; flex-wrap:wrap; justify-content:center;}
+  :root{ --navy:#23406E; --teal:#2596C5; --gold:#F6B130; --ink-faint:#5C6B82; }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Poppins',sans-serif; background:#F3F5F8; color:#1A2A44; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:56px 24px;}
+  .intro{max-width:640px; text-align:center; margin-bottom:40px;}
+  .intro img{height:56px; margin-bottom:28px;}
+  .intro span{font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal);}
+  .intro h1{font-size:30px; line-height:1.25; font-weight:600; color:var(--navy); letter-spacing:-0.02em; margin:14px 0 16px;}
+  .intro p{font-size:16px; line-height:1.6; color:var(--ink-faint); margin:0;}
+  .card-wrap{display:flex; gap:24px; flex-wrap:wrap; justify-content:center;}
   .dir-card{background:#fff; border:1px solid #E1E6ED; border-radius:12px; padding:36px; width:320px; text-decoration:none; color:inherit; transition:transform .18s ease, box-shadow .18s ease;}
   .dir-card:hover{transform:translateY(-3px); box-shadow:0 16px 32px -18px rgba(35,64,110,.25);}
-  .dir-card h2{font-size:20px; color:#23406E; margin:0 0 10px;}
-  .dir-card p{font-size:14px; color:#5C6B82; line-height:1.5; margin:0 0 18px;}
-  .dir-card span{font-size:13px; font-weight:600; color:#2596C5;}
+  .dir-card .tag{font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); background:#FDF2DC; border:1px solid #F6DCA8; padding:3px 8px; border-radius:4px; display:inline-block; margin-bottom:14px;}
+  .dir-card h2{font-size:20px; color:var(--navy); margin:0 0 10px;}
+  .dir-card p{font-size:14px; color:var(--ink-faint); line-height:1.5; margin:0 0 18px;}
+  .dir-card span.cta{font-size:13px; font-weight:600; color:var(--teal);}
 </style>
 </head>
 <body>
+  <div class="intro">
+    <img src="assets/p2p-logo.png" alt="Pathway 2 Privacy">
+    <span>Design review</span>
+    <h1>Two homepage directions for stakeholder review</h1>
+    <p>Same content, two different visual treatments. Open either below to review in full — all figures, testimonials, logos and contact details are placeholders, clearly marked, pending final content.</p>
+  </div>
   <div class="card-wrap">
     <a class="dir-card" href="direction-1.html">
+      <span class="tag">Placeholder content</span>
       <h2>Direction 1</h2>
       <p>Calm &amp; Credible — soft, professional, low-motion. Traditional professional-services feel.</p>
-      <span>View homepage →</span>
+      <span class="cta">View homepage &rarr;</span>
     </a>
     <a class="dir-card" href="direction-2.html">
+      <span class="tag">Placeholder content</span>
       <h2>Direction 2</h2>
       <p>Structured &amp; Confident — alternating colour blocks, accordion sectors, bold hero scale.</p>
-      <span>View homepage →</span>
+      <span class="cta">View homepage &rarr;</span>
     </a>
   </div>
 </body>
