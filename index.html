@@ -1,48 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pathway 2 Privacy — Homepage Directions</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{ --navy:#23406E; --teal:#2596C5; --gold:#F6B130; --ink-faint:#5C6B82; }
-  *{box-sizing:border-box;}
-  body{margin:0; font-family:'Poppins',sans-serif; background:#F3F5F8; color:#1A2A44; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:56px 24px;}
-  .intro{max-width:640px; text-align:center; margin-bottom:40px;}
-  .intro img{height:56px; margin-bottom:28px;}
-  .intro span{font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal);}
-  .intro h1{font-size:30px; line-height:1.25; font-weight:600; color:var(--navy); letter-spacing:-0.02em; margin:14px 0 16px;}
-  .intro p{font-size:16px; line-height:1.6; color:var(--ink-faint); margin:0;}
-  .card-wrap{display:flex; gap:24px; flex-wrap:wrap; justify-content:center;}
-  .dir-card{background:#fff; border:1px solid #E1E6ED; border-radius:12px; padding:36px; width:320px; text-decoration:none; color:inherit; transition:transform .18s ease, box-shadow .18s ease;}
-  .dir-card:hover{transform:translateY(-3px); box-shadow:0 16px 32px -18px rgba(35,64,110,.25);}
-  .dir-card .tag{font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); background:#FDF2DC; border:1px solid #F6DCA8; padding:3px 8px; border-radius:4px; display:inline-block; margin-bottom:14px;}
-  .dir-card h2{font-size:20px; color:var(--navy); margin:0 0 10px;}
-  .dir-card p{font-size:14px; color:var(--ink-faint); line-height:1.5; margin:0 0 18px;}
-  .dir-card span.cta{font-size:13px; font-weight:600; color:var(--teal);}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pathway 2 Privacy — Data protection for SMEs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <div class="intro">
-    <img src="assets/p2p-logo.png" alt="Pathway 2 Privacy">
-    <span>Design review</span>
-    <h1>Two homepage directions for stakeholder review</h1>
-    <p>Same content, two different visual treatments. Open either below to review in full — all figures, testimonials, logos and contact details are placeholders, clearly marked, pending final content.</p>
+<div class="nav-wrap" style="position:sticky;top:0;z-index:40">
+  <header class="site-header" id="siteHeader">
+    <a href="index.html"><img src="assets/p2p-logo.png" alt="Pathway 2 Privacy" style="height:44px;width:auto;display:block"></a>
+    <nav class="site-nav">
+      <span class="nav-trigger" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="mega-services">Services <span class="caret">&#8964;</span></span>
+      <span class="nav-trigger" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="mega-sectors">Sectors <span class="caret">&#8964;</span></span>
+      <a href="blog.html" class="link-navy-hover">Blog</a>
+      <a href="about.html" class="link-navy-hover">About</a>
+      <a href="contact.html" class="link-navy-hover">Contact</a>
+    </nav>
+    <a href="free-data-protection-audit.html" class="cta-gold cta-md">Free Data Protection Audit</a>
+  </header>
+
+  <div class="mega-panel" id="mega-services">
+    <div class="mega-inner">
+      <div class="mega-col">
+        <span class="cat-label">Consultancy</span>
+        <a href="data-protection-consultancy.html" class="link-navy-hover">Data Protection Consultancy</a>
+        <a href="gdpr-consultancy.html" class="link-navy-hover">GDPR Consultancy &amp; Compliance</a>
+      </div>
+      <div class="mega-col">
+        <span class="cat-label">Assessments &amp; Audits</span>
+        <a href="data-protection-audits.html" class="link-navy-hover">Data Protection Audits &amp; Gap Analysis</a>
+        <a href="data-protection-risk-assessments.html" class="link-navy-hover">Data Protection Risk Assessments</a>
+        <a href="dpia-consultancy.html" class="link-navy-hover">DPIA Consultancy</a>
+        <a href="data-mapping.html" class="link-navy-hover">Data Mapping &amp; Data Flow Mapping</a>
+      </div>
+      <div class="mega-col">
+        <span class="cat-label">Outsourced DPO &amp; Ongoing Support</span>
+        <a href="dpo-services.html" class="link-navy-hover">Outsourced DPO Services</a>
+        <a href="data-privacy-services.html" class="link-navy-hover">Data Protection &amp; Privacy Services</a>
+      </div>
+      <div class="mega-col">
+        <span class="cat-label">Documentation &amp; Governance</span>
+        <a href="privacy-policies-documentation.html" class="link-navy-hover">Privacy Policy &amp; Documentation</a>
+        <a href="data-governance-frameworks.html" class="link-navy-hover">Data Governance Frameworks</a>
+        <a href="data-protection-by-design.html" class="link-navy-hover">Data Protection by Design</a>
+      </div>
+      <div class="mega-col">
+        <span class="cat-label">Training</span>
+        <a href="data-protection-training.html" class="link-navy-hover">Data Protection Training</a>
+      </div>
+      <div class="mega-col">
+        <span class="cat-label">Incident Response</span>
+        <a href="data-breach-support.html" class="link-navy-hover">Data Breach Support</a>
+      </div>
+      <div class="mega-col">
+        <span class="cat-label">AI &amp; Emerging Tech</span>
+        <a href="ai-data-protection.html" class="link-navy-hover">AI &amp; Data Protection / AI Governance Assessment</a>
+      </div>
+      <div class="mega-cta-card">
+        <span class="cap">Not sure which you need?</span>
+        <p>Start with the free audit. We'll tell you where you stand and what's worth doing first.</p>
+        <a href="free-data-protection-audit.html" class="cta-gold cta-sm">Get Your Free Audit</a>
+      </div>
+    </div>
   </div>
-  <div class="card-wrap">
-    <a class="dir-card" href="direction-1.html">
-      <span class="tag">Placeholder content</span>
-      <h2>Direction 1</h2>
-      <p>Calm &amp; Credible — soft, professional, low-motion. Traditional professional-services feel.</p>
-      <span class="cta">View homepage &rarr;</span>
-    </a>
-    <a class="dir-card" href="direction-2.html">
-      <span class="tag">Placeholder content</span>
-      <h2>Direction 2</h2>
-      <p>Structured &amp; Confident — alternating colour blocks, accordion sectors, bold hero scale.</p>
-      <span class="cta">View homepage &rarr;</span>
-    </a>
+
+  <div class="sectors-panel" id="mega-sectors">
+    <div class="sectors-inner">
+      <a href="sectors/retail-data-protection.html" class="sector-pick sector-tile-hover">
+        <span class="name">Retail</span>
+        <span class="desc">Loyalty data, e-commerce, marketing consent</span>
+      </a>
+      <a href="sectors/financial-services-data-protection.html" class="sector-pick sector-tile-hover">
+        <span class="name">Financial Services</span>
+        <span class="desc">FCA expectations, client files, third parties</span>
+      </a>
+      <a href="sectors/healthcare-data-protection.html" class="sector-pick sector-tile-hover">
+        <span class="name">Healthcare</span>
+        <span class="desc">Special category data, sharing, DSPT</span>
+      </a>
+      <a href="sectors/gdpr-schools.html" class="sector-pick sector-tile-hover">
+        <span class="name">Schools &amp; Education</span>
+        <span class="desc">Pupil records, safeguarding, parental SARs</span>
+      </a>
+    </div>
   </div>
+</div>
+
+  <section class="two-col" style="max-width:1440px;margin:0 auto;padding:84px clamp(20px,4.5vw,64px) 64px">
+    <div style="min-width:0;animation:p2pRise .7s cubic-bezier(.2,.7,.3,1) both">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px">
+        <span style="width:26px;height:1px;background:var(--teal);display:block"></span>
+        <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">UK GDPR &amp; data protection for SMEs</span>
+      </div>
+      <h1 style="font-size:clamp(34px,4.2vw,54px);line-height:1.08;font-weight:600;letter-spacing:-0.022em;color:var(--navy);margin:0 0 22px;text-wrap:pretty">Data protection that fits the way your organisation actually works</h1>
+      <p style="font-size:19px;line-height:1.6;color:var(--ink-lede);margin:0 0 34px;max-width:520px;text-wrap:pretty">We sit alongside your team, sort the records and processes that matter, and stay reachable when something comes up.</p>
+      <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
+        <a href="free-data-protection-audit.html" class="cta-gold cta-lg">Get Your Free Data Protection Audit</a>
+        <a href="contact.html" class="link-secondary">or book a discovery call &rarr;</a>
+      </div>
+      <span style="font-size:14px;color:var(--ink-support);display:block;margin-top:18px">No charge, no obligation. You'll get a written summary either way.</span>
+    </div>
+    <div style="position:relative;min-width:0;animation:p2pRise .9s cubic-bezier(.2,.7,.3,1) .12s both">
+      <div class="img-slot" style="height:440px;border-radius:14px">
+        <span class="cap">Hero &mdash; advisor sat beside a client at a desk, both looking at the same laptop. Natural window light, real UK small-business office, muted grade. No high-fives, no white-background studio shots.</span>
+      </div>
+      <div style="position:absolute;bottom:-26px;left:-26px;background:#fff;border:1px solid var(--hairline);border-radius:10px;padding:16px 20px;box-shadow:0 14px 34px -22px rgba(35,64,110,0.4);max-width:250px">
+        <span style="font-size:13px;line-height:1.5;color:var(--ink-lede)">Audits start with a questionnaire, unfolds into a conversation</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:44px clamp(20px,4.5vw,64px) 76px" data-reveal>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:22px">
+      <div>
+        <h2 style="font-size:22px;font-weight:600;color:var(--navy);margin:0 0 6px">Start with your sector</h2>
+        <p style="font-size:15px;color:var(--ink-support);margin:0">Each sector page covers the obligations, the gaps we see most often, and typical timelines.</p>
+      </div>
+      <span class="ph-tag boxed">4 sectors confirmed in scope</span>
+    </div>
+    <div style="display:grid;min-width:0;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:24px">
+      <a href="sectors/retail-data-protection.html" class="card-hover" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--hairline);border-radius:12px;overflow:hidden">
+        <div class="img-slot" style="height:150px"><span class="cap">Retail — till/back-office moment, independent shop</span></div>
+        <span style="display:flex;flex-direction:column;gap:10px;padding:24px">
+          <span style="font-size:19px;font-weight:600;color:var(--navy)">Retail</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Loyalty schemes, e-commerce platforms, CCTV and marketing consent across sites.</span>
+          <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:4px">Retail guidance &rarr;</span>
+        </span>
+      </a>
+      <a href="sectors/financial-services-data-protection.html" class="card-hover" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--hairline);border-radius:12px;overflow:hidden">
+        <div class="img-slot" style="height:150px"><span class="cap">Financial services — adviser reviewing paperwork with a client</span></div>
+        <span style="display:flex;flex-direction:column;gap:10px;padding:24px">
+          <span style="font-size:19px;font-weight:600;color:var(--navy)">Financial Services</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Client files, FCA expectations, retention, and the third parties you rely on.</span>
+          <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:4px">Financial services guidance &rarr;</span>
+        </span>
+      </a>
+      <a href="sectors/healthcare-data-protection.html" class="card-hover" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--hairline);border-radius:12px;overflow:hidden">
+        <div class="img-slot" style="height:150px"><span class="cap">Healthcare — practice manager at a workstation, clinical setting</span></div>
+        <span style="display:flex;flex-direction:column;gap:10px;padding:24px">
+          <span style="font-size:19px;font-weight:600;color:var(--navy)">Healthcare</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Special category data, lawful bases for sharing, retention and DSPT expectations.</span>
+          <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:4px">Healthcare guidance &rarr;</span>
+        </span>
+      </a>
+      <a href="sectors/gdpr-schools.html" class="card-hover" style="display:flex;flex-direction:column;background:#fff;border:1px solid var(--hairline);border-radius:12px;overflow:hidden">
+        <div class="img-slot" style="height:150px"><span class="cap">Schools — school office staff at a computer, uncluttered</span></div>
+        <span style="display:flex;flex-direction:column;gap:10px;padding:24px">
+          <span style="font-size:19px;font-weight:600;color:var(--navy)">Schools &amp; Education</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Pupil records, safeguarding files, MIS suppliers and parental subject access requests.</span>
+          <span style="font-size:14px;font-weight:600;color:var(--teal);margin-top:4px">Schools guidance &rarr;</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);background:var(--band)">
+    <div style="max-width:1440px;margin:0 auto;padding:52px clamp(20px,4.5vw,64px)">
+      <div class="divided-row" style="grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr))">
+        <div style="display:flex;flex-direction:column;gap:6px;padding:26px 28px">
+          <span class="stat-num" data-countup="10" data-suffix="+ years">10+ years</span>
+          <span style="font-size:13px;color:var(--ink-support)">advising UK organisations</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:26px 28px">
+          <span class="stat-num" data-countup="200" data-suffix="+">200+</span>
+          <span style="font-size:13px;color:var(--ink-support)">engagements delivered</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:26px 28px">
+          <span class="stat-num" data-countup="4" data-suffix=" sectors">4 sectors</span>
+          <span style="font-size:13px;color:var(--ink-support)">with dedicated guidance</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:26px 28px">
+          <span class="stat-num" data-countup="1" data-suffix=" day">1 day</span>
+          <span style="font-size:13px;color:var(--ink-support)">typical response to a query</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:16px">
+        <span class="ph-tag boxed">placeholder figures</span>
+        <span style="font-size:12px;color:var(--ink-meta)">Replace with verified numbers before publication.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="two-col align-start" style="max-width:1440px;margin:0 auto;padding:92px clamp(20px,4.5vw,64px)" data-reveal>
+    <div>
+      <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">The Pathway</span>
+      <h2 style="font-size:clamp(26px,3vw,36px);line-height:1.2;font-weight:600;color:var(--navy);margin:14px 0 18px;letter-spacing:-0.015em">Four steps, and you always know which one you're on</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--ink-lede);margin:0 0 26px">Most SMEs reach step three within six weeks. Nothing is billed before you've seen the plan.</p>
+      <a href="free-data-protection-audit.html" class="link-secondary">Step one is the free audit &rarr;</a>
+    </div>
+    <div class="divided-row" style="grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr))">
+        <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;font-weight:700;color:var(--teal)">01</span>
+          <span style="font-size:17px;font-weight:600;color:var(--navy)">Free audit</span>
+          <span style="font-size:13px;line-height:1.55;color:var(--ink-support)">We look at what data you hold and where the obvious exposure is.</span>
+        </div>
+        <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;font-weight:700;color:var(--teal)">02</span>
+          <span style="font-size:17px;font-weight:600;color:var(--navy)">Assessment</span>
+          <span style="font-size:13px;line-height:1.55;color:var(--ink-support)">A structured review of records, systems, suppliers and staff practice.</span>
+        </div>
+        <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;font-weight:700;color:var(--teal)">03</span>
+          <span style="font-size:17px;font-weight:600;color:var(--navy)">Priority plan</span>
+          <span style="font-size:13px;line-height:1.55;color:var(--ink-support)">Fixes ordered by risk, with owners and realistic dates.</span>
+        </div>
+        <div style="padding:30px 24px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;font-weight:700;color:var(--teal)">04</span>
+          <span style="font-size:17px;font-weight:600;color:var(--navy)">Ongoing support</span>
+          <span style="font-size:13px;line-height:1.55;color:var(--ink-support)">A named contact for questions, incidents and annual reviews.</span>
+        </div>
+    </div>
+  </section>
+
+  <section style="background:var(--band);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)" data-reveal>
+    <div style="max-width:1440px;margin:0 auto;padding:92px clamp(20px,4.5vw,64px)">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:44px">
+        <div>
+          <span style="font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)">Services</span>
+          <h2 style="font-size:clamp(26px,3vw,36px);line-height:1.2;font-weight:600;color:var(--navy);margin:14px 0 0;letter-spacing:-0.015em;max-width:680px">Seven areas of work, grouped the way SMEs ask for them</h2>
+        </div>
+        <span style="font-size:15px;color:var(--ink-support);white-space:nowrap">Full list in the Services menu</span>
+      </div>
+      <div style="display:grid;min-width:0;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:24px">
+        <a href="data-protection-consultancy.html" class="card-hover" style="background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px">
+          <span style="width:30px;height:3px;background:var(--gold);display:block;margin-bottom:10px"></span>
+          <span style="font-size:18px;font-weight:600;color:var(--navy)">Consultancy</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Practical GDPR advice, from one question to a full compliance programme.</span>
+        </a>
+        <a href="data-protection-audits.html" class="card-hover" style="background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px">
+          <span style="width:30px;height:3px;background:var(--gold);display:block;margin-bottom:10px"></span>
+          <span style="font-size:18px;font-weight:600;color:var(--navy)">Assessments &amp; Audits</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Audits and gap analysis, risk assessments, DPIAs, data and data-flow mapping.</span>
+        </a>
+        <a href="dpo-services.html" class="card-hover" style="background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px">
+          <span style="width:30px;height:3px;background:var(--gold);display:block;margin-bottom:10px"></span>
+          <span style="font-size:18px;font-weight:600;color:var(--navy)">Outsourced DPO &amp; Support</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">A named data protection officer and ongoing privacy cover, retained monthly.</span>
+        </a>
+        <a href="privacy-policies-documentation.html" class="card-hover" style="background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px">
+          <span style="width:30px;height:3px;background:var(--gold);display:block;margin-bottom:10px"></span>
+          <span style="font-size:18px;font-weight:600;color:var(--navy)">Documentation &amp; Governance</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Policies, records, governance frameworks and data protection by design.</span>
+        </a>
+        <a href="data-protection-training.html" class="card-hover" style="background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px">
+          <span style="width:30px;height:3px;background:var(--gold);display:block;margin-bottom:10px"></span>
+          <span style="font-size:18px;font-weight:600;color:var(--navy)">Training</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Short, sector-specific sessions for staff, trustees and governors.</span>
+        </a>
+        <a href="data-breach-support.html" class="card-hover" style="background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px">
+          <span style="width:30px;height:3px;background:var(--gold);display:block;margin-bottom:10px"></span>
+          <span style="font-size:18px;font-weight:600;color:var(--navy)">Incident Response</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">Data breach support when something has already gone wrong.</span>
+        </a>
+        <a href="ai-data-protection.html" class="card-hover" style="background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px">
+          <span style="width:30px;height:3px;background:var(--gold);display:block;margin-bottom:10px"></span>
+          <span style="font-size:18px;font-weight:600;color:var(--navy)">AI &amp; Emerging Tech</span>
+          <span style="font-size:14px;line-height:1.6;color:var(--ink-support)">AI governance assessments and data protection for new tooling.</span>
+        </a>
+        <div style="background:var(--navy);border-radius:12px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:18px">
+          <span style="font-size:18px;line-height:1.45;font-weight:600;color:#fff">Start where everyone starts</span>
+          <a href="free-data-protection-audit.html" class="cta-gold cta-md" style="text-align:center">Get Your Free Audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:92px clamp(20px,4.5vw,64px)" data-reveal>
+    <div class="p2p-card" style="padding:clamp(28px,3.5vw,48px)">
+      <span class="ph-tag boxed">placeholder testimonial</span>
+      <blockquote style="font-size:clamp(20px,2.2vw,26px);line-height:1.5;font-weight:400;color:var(--navy);margin:24px 0 26px;max-width:860px;text-wrap:pretty">&ldquo;We'd put data protection off for two years because we assumed it meant a big project. It took six weeks and most of it was tidying things we already had.&rdquo;</blockquote>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span style="width:44px;height:44px;border-radius:50%;background:#DFE4EC;display:block;flex:none"></span>
+        <span style="font-size:14px;line-height:1.5;color:var(--ink-support)">Operations Director<br>Multi-site care provider, South East</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin:40px 0 16px">
+      <span style="font-size:13px;color:var(--ink-meta)">Organisations we work with</span>
+      <span class="ph-tag">placeholder logos</span>
+    </div>
+    <div class="divided-row" style="grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))">
+      <span style="height:84px;background:#fff;box-shadow:inset -1px 0 0 var(--hairline),inset 0 -1px 0 var(--hairline);display:flex;align-items:center;justify-content:center"><span style="width:72px;height:22px;border-radius:4px;background:#E6E4DC;filter:blur(1px);display:block"></span></span>
+      <span style="height:84px;background:#fff;box-shadow:inset -1px 0 0 var(--hairline),inset 0 -1px 0 var(--hairline);display:flex;align-items:center;justify-content:center"><span style="width:88px;height:22px;border-radius:4px;background:#E6E4DC;filter:blur(1px);display:block"></span></span>
+      <span style="height:84px;background:#fff;box-shadow:inset -1px 0 0 var(--hairline),inset 0 -1px 0 var(--hairline);display:flex;align-items:center;justify-content:center"><span style="width:64px;height:22px;border-radius:4px;background:#E6E4DC;filter:blur(1px);display:block"></span></span>
+      <span style="height:84px;background:#fff;box-shadow:inset -1px 0 0 var(--hairline),inset 0 -1px 0 var(--hairline);display:flex;align-items:center;justify-content:center"><span style="width:80px;height:22px;border-radius:4px;background:#E6E4DC;filter:blur(1px);display:block"></span></span>
+      <span style="height:84px;background:#fff;box-shadow:inset -1px 0 0 var(--hairline),inset 0 -1px 0 var(--hairline);display:flex;align-items:center;justify-content:center"><span style="width:70px;height:22px;border-radius:4px;background:#E6E4DC;filter:blur(1px);display:block"></span></span>
+      <span style="height:84px;background:#fff;box-shadow:inset -1px 0 0 var(--hairline),inset 0 -1px 0 var(--hairline);display:flex;align-items:center;justify-content:center"><span style="width:84px;height:22px;border-radius:4px;background:#E6E4DC;filter:blur(1px);display:block"></span></span>
+    </div>
+  </section>
+
+  <section id="free-audit" style="background:var(--navy);color:#fff" data-reveal>
+    <div class="two-col" style="max-width:1440px;margin:0 auto;padding:80px clamp(20px,4.5vw,64px);gap:clamp(32px,4.5vw,72px)">
+      <div>
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold)">No charge &middot; no obligation</span>
+        <h2 style="font-size:clamp(27px,3vw,38px);line-height:1.2;font-weight:600;margin:14px 0 16px;letter-spacing:-0.018em;max-width:560px">Find out where your data protection actually stands</h2>
+        <p style="font-size:17px;line-height:1.65;color:#C6D5E8;margin:0;max-width:520px">A short review of your records, contracts, staff practice and security, and a written summary of what to fix first. The same starting point for every engagement we run.</p>
+      </div>
+      <div style="background:var(--navy-deep);border:1px solid rgba(255,255,255,0.16);border-radius:12px;padding:30px">
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:22px">
+          <span style="font-size:14px;color:#C6D5E8">&#10003; &nbsp;Written summary within five working days</span>
+          <span style="font-size:14px;color:#C6D5E8">&#10003; &nbsp;No sales deck, no obligation to continue</span>
+          <span style="font-size:14px;color:#C6D5E8">&#10003; &nbsp;Sector-specific, not a generic checklist</span>
+        </div>
+        <a href="free-data-protection-audit.html" class="cta-gold cta-lg" style="display:block">Get Your Free Data Protection Audit</a>
+        <span style="font-size:12px;color:#A9C4E4;display:block;margin-top:14px;text-align:center">Takes two minutes to request.</span>
+      </div>
+    </div>
+  </section>
+
+<footer class="site-footer">
+  <div class="footer-cols">
+    <div>
+      <img src="assets/p2p-logo.png" alt="Pathway 2 Privacy" style="height:52px;width:auto;display:block;margin-bottom:20px">
+      <p style="font-size:14px;line-height:1.65;color:var(--ink-support);margin:0 0 20px;max-width:260px">UK GDPR and data protection support for small and medium organisations.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink-support)">
+        <span>hello@pathway2privacy.co.uk <span class="ph-tag">placeholder</span></span>
+        <span>0000 000 0000</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span class="footer-col-title">Services</span>
+      <a href="data-protection-consultancy.html">Consultancy</a>
+      <a href="data-protection-audits.html">Assessments &amp; audits</a>
+      <a href="dpo-services.html">Outsourced DPO</a>
+      <a href="privacy-policies-documentation.html">Documentation &amp; governance</a>
+      <a href="data-protection-training.html">Training</a>
+      <a href="data-breach-support.html">Data breach support</a>
+      <a href="ai-data-protection.html">AI &amp; data protection</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span class="footer-col-title">Company</span>
+      <a href="sectors/retail-data-protection.html">Retail</a>
+      <a href="sectors/financial-services-data-protection.html">Financial services</a>
+      <a href="sectors/healthcare-data-protection.html">Healthcare</a>
+      <a href="sectors/gdpr-schools.html">Schools &amp; education</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <span class="footer-col-title" style="display:block;margin-bottom:12px">Monthly practice note</span>
+      <p style="font-size:14px;line-height:1.6;color:var(--ink-support);margin:0 0 16px">What changed in UK data protection, and what it means for a 40-person organisation.</p>
+      <div style="display:flex;gap:10px">
+        <input type="email" placeholder="Email address" style="flex:1;min-width:0;font-size:14px;padding:12px 14px;border-radius:6px;border:1px solid var(--hairline-cream);background:#fff;color:var(--ink)">
+        <button type="button" class="btn-navy-hover" style="font-size:14px;font-weight:600;color:#fff;background:var(--navy);border:none;border-radius:6px;padding:12px 20px;cursor:pointer">Sign up</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-legal-bar">
+    <span>&copy; 2026 Pathway 2 Privacy Ltd. Registered in England.</span>
+    <div class="footer-legal-links">
+      <a href="privacy-notice.html" class="link-teal-hover">Privacy notice</a>
+      <a href="cookies.html" class="link-teal-hover">Cookies</a>
+      <a href="terms.html" class="link-teal-hover">Terms</a>
+    </div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
 </body>
 </html>

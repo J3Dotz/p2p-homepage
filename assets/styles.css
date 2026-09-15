@@ -1,0 +1,173 @@
+/* Pathway 2 Privacy — shared stylesheet (Phase 2)
+   Palette, type, and the four layout components per STYLE-NOTES.md.
+   Every style-hover="..." from the original .dc.html files was converted to
+   one of the classes below — see the class list in the Step 2 conversion notes. */
+
+:root {
+  --navy: #23406E;
+  --navy-deep: #1B3358;
+  --teal: #2596C5;
+  --gold: #F6B130;
+  --page: #FCFCFA;
+  --band: #F7F6F2;
+  --ink: #2B3038;
+  --ink-body: #3C4350;
+  --ink-lede: #5C6472;
+  --ink-support: #7A828E;
+  --ink-meta: #9AA0AA;
+  --hairline: #EDEBE4;
+  --hairline-cream: #E3E0D8;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--page); font-family: 'Poppins', system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+a { color: var(--teal); text-decoration: none; }
+::selection { background: var(--gold); color: var(--navy); }
+img { max-width: 100%; }
+
+@keyframes p2pRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ── Hover classes (replace every style-hover="...") ───────────────────── */
+.link-navy-hover:hover { color: var(--navy); }
+.link-teal-hover:hover { color: var(--teal); }
+.sector-tile-hover { transition: border-color .18s ease, background .18s ease; }
+.sector-tile-hover:hover { border-color: var(--teal); background: #F4FAFD; }
+.card-hover { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.card-hover:hover { transform: translateY(-4px); border-color: var(--teal); box-shadow: 0 18px 36px -24px rgba(35,64,110,.45); }
+.pill-hover { transition: border-color .18s ease, color .18s ease; }
+.pill-hover:hover { border-color: var(--teal); color: var(--navy); }
+.pill-hover-alt { transition: border-color .18s ease, background .18s ease; }
+.pill-hover-alt:hover { border-color: var(--teal); background: var(--band); }
+.btn-navy-hover { transition: background .18s ease; }
+.btn-navy-hover:hover { background: var(--navy-deep); }
+
+/* ── CTA (the only CTA — STYLE-NOTES section 1) ────────────────────────── */
+.cta-gold {
+  display: inline-block; background: var(--gold); color: var(--navy);
+  font-weight: 700; letter-spacing: 0.01em; border-radius: 6px;
+  box-shadow: 0 2px 0 rgba(35,64,110,.18);
+  transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+  white-space: nowrap; border: none; cursor: pointer; text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+.cta-gold:hover { background: #fff; color: var(--navy); transform: translateY(-2px); box-shadow: 0 10px 22px -10px rgba(35,64,110,.5); }
+.cta-sm { font-size: 13px; padding: 11px 18px; }
+.cta-md { font-size: 14px; padding: 13px 22px; }
+.cta-lg { font-size: 16px; padding: 18px 32px; }
+/* Free-audit landing page submit button: turns navy with white text, not white-on-gold */
+.cta-audit-submit:hover { background: var(--navy) !important; color: #fff !important; }
+
+.link-secondary { font-size: 15px; font-weight: 600; color: var(--teal); }
+
+/* ── Placeholder tags (inline, monospace, gold-badge) ──────────────────── */
+.ph-tag { font-family: ui-monospace, Menlo, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #8A6A16; }
+.ph-tag.boxed { background: #FDF2DC; border: 1px solid #F6DCA8; padding: 3px 7px; border-radius: 3px; }
+
+/* ── Sticky header + mega-menu ──────────────────────────────────────────── */
+header.site-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 36px;
+  padding: 20px clamp(20px,4.5vw,64px); border-bottom: 1px solid var(--hairline);
+  background: var(--page); transition: box-shadow .25s ease;
+}
+header.site-header.scrolled { box-shadow: 0 10px 24px -18px rgba(35,64,110,.55); }
+.site-nav { display: flex; align-items: center; gap: 30px; font-size: 15px; font-weight: 500; color: var(--ink-body); }
+.site-nav a, .site-nav .nav-trigger { color: var(--ink-body); display: flex; align-items: center; gap: 7px; cursor: pointer; padding: 6px 0; }
+.site-nav .current { color: var(--navy); font-weight: 600; }
+.site-nav .caret { display: inline-block; font-size: 13px; line-height: 1; color: var(--ink-meta); transition: transform .22s ease; }
+.nav-trigger[aria-expanded="true"] .caret { transform: rotate(180deg); }
+
+.mega-panel, .sectors-panel {
+  position: absolute; left: 0; right: 0; top: 100%; background: #fff;
+  border-bottom: 1px solid var(--hairline); box-shadow: 0 22px 40px -28px rgba(35,64,110,.45);
+  overflow: hidden; opacity: 0; transform: translateY(-10px); visibility: hidden;
+  transition: opacity .22s ease, transform .26s cubic-bezier(.2,.7,.3,1), visibility .22s;
+}
+.mega-panel.open, .sectors-panel.open { opacity: 1; transform: translateY(0); visibility: visible; }
+.mega-inner {
+  max-width: 1440px; margin: 0 auto; padding: 40px clamp(20px,4.5vw,64px) 44px;
+  display: grid; min-width: 0; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap: 34px 44px;
+}
+.mega-col { display: flex; flex-direction: column; gap: 10px; }
+.mega-col .cat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); padding-bottom: 8px; border-bottom: 1px solid var(--hairline); }
+.mega-col a { font-size: 14px; color: var(--ink-body); }
+.mega-cta-card { background: var(--band); border: 1px solid var(--hairline); border-radius: 10px; padding: 22px; }
+.mega-cta-card .cap { font-size: 15px; font-weight: 600; color: var(--navy); display: block; margin-bottom: 8px; }
+.mega-cta-card p { font-size: 13px; line-height: 1.55; color: var(--ink-support); margin: 0 0 16px; }
+.sectors-inner {
+  max-width: 1440px; margin: 0 auto; padding: 26px clamp(20px,4.5vw,64px) 30px;
+  display: grid; min-width: 0; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap: 20px;
+}
+.sector-pick { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.sector-pick .name { font-size: 15px; font-weight: 600; color: var(--navy); }
+.sector-pick .desc { font-size: 13px; color: var(--ink-support); }
+
+/* ── Breadcrumb ─────────────────────────────────────────────────────────── */
+.breadcrumb { font-size: 13px; color: #8A9099; }
+.breadcrumb a { color: #8A9099; }
+.breadcrumb .sep { color: #C9CDD4; }
+.breadcrumb .current { color: var(--ink-lede); }
+
+/* ── 4b. The four layout components ────────────────────────────────────── */
+/* 1. Card */
+.p2p-card { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 28px 30px; }
+
+/* 2. Divided card row — hairlines on the cells, not the gaps */
+.divided-row { display: grid; min-width: 0; background: #fff; border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+.divided-row > * { background: #fff; box-shadow: inset -1px 0 0 var(--hairline), inset 0 -1px 0 var(--hairline); }
+.divided-row > .accent { box-shadow: inset 0 3px 0 var(--gold), inset -1px 0 0 var(--hairline), inset 0 -1px 0 var(--hairline); }
+
+/* 3. Row list — hairline rows, no outer card (FAQ / accordion) */
+.row-list { border-top: 1px solid var(--hairline-cream); }
+.row-list .row { border-bottom: 1px solid var(--hairline-cream); }
+.faq-q { display: flex; align-items: center; gap: 20px; padding: 22px 4px; cursor: pointer; background: none; border: none; width: 100%; text-align: left; font-family: 'Poppins', sans-serif; }
+.faq-q .label { font-size: 18px; font-weight: 600; color: var(--navy); flex: 1; }
+.faq-q .sign { font-size: 22px; color: var(--gold); }
+.faq-a { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .3s ease, opacity .25s ease; }
+.faq-a p { font-size: 16px; line-height: 1.7; color: var(--ink-lede); margin: 0 0 22px; padding-right: 40px; }
+.row-list .row.open .faq-a { max-height: 320px; opacity: 1; }
+
+/* 4. Two-column section */
+.two-col { display: grid; min-width: 0; grid-template-columns: repeat(auto-fit,minmax(min(340px,100%),1fr)); gap: clamp(28px,4vw,64px); align-items: center; }
+.two-col.align-start { align-items: start; }
+
+/* ── Image placeholders (replaces <image-slot>) ────────────────────────── */
+.img-slot {
+  position: relative; width: 100%; overflow: hidden;
+  background: linear-gradient(135deg, #DCE9F5 0%, #BFE0EC 45%, #F6DCA8 100%);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.img-slot .cap { font-size: 13px; line-height: 1.5; color: rgba(35,64,110,.75); padding: 20px; max-width: 88%; }
+.img-slot.circle { border-radius: 50%; }
+
+/* ── Stat count-up ──────────────────────────────────────────────────────── */
+.stat-num { font-size: clamp(24px,2.4vw,30px); font-weight: 600; color: var(--navy); letter-spacing: -0.01em; }
+
+/* ── Scroll reveal ──────────────────────────────────────────────────────── */
+[data-reveal] { opacity: 0; }
+[data-reveal].revealed { animation: p2pRise .65s cubic-bezier(.2,.7,.3,1) both; }
+@media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1; animation: none; } }
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+footer.site-footer { background: var(--page); border-top: 1px solid var(--hairline); }
+.footer-cols {
+  max-width: 1440px; margin: 0 auto; padding: clamp(20px,4.5vw,64px) 64px 28px;
+  display: grid; min-width: 0; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap: clamp(28px,3.5vw,56px);
+}
+.footer-cols a { font-size: 14px; color: var(--ink-support); }
+.footer-col-title { font-size: 13px; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; }
+.footer-legal-bar {
+  max-width: 1440px; margin: 0 auto; padding: 20px clamp(20px,4.5vw,64px) 40px; border-top: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: 13px; color: var(--ink-meta);
+}
+.footer-legal-links { display: flex; gap: 26px; }
+.footer-legal-links a { color: var(--navy); font-weight: 600; font-size: 14px; }
+
+input, textarea, select { font-family: 'Poppins', sans-serif; }
+
+@media (max-width: 900px) {
+  .site-nav { display: none; }
+}
