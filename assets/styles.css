@@ -58,8 +58,10 @@ img { max-width: 100%; }
 .cta-sm { font-size: 13px; padding: 11px 18px; }
 .cta-md { font-size: 14px; padding: 13px 22px; }
 .cta-lg { font-size: 16px; padding: 18px 32px; }
-/* Free-audit landing page submit button: turns navy with white text, not white-on-gold */
-.cta-audit-submit:hover { background: var(--navy) !important; color: #fff !important; }
+/* White-on-white: a gold CTA sitting on a white/cream surface (header, the
+   mega-menu's cream card, hero sections, the form card) needs a hover that
+   isn't "turn white" — it'd vanish into the page. Inverts to navy instead. */
+.cta-gold.on-light:hover { background: var(--navy); color: #fff; }
 
 .link-secondary { font-size: 15px; font-weight: 600; color: var(--teal); }
 
@@ -75,7 +77,14 @@ header.site-header {
 }
 header.site-header.scrolled { box-shadow: 0 10px 24px -18px rgba(35,64,110,.55); }
 .site-nav { display: flex; align-items: center; gap: 30px; font-size: 15px; font-weight: 500; color: var(--ink-body); }
-.site-nav a, .site-nav .nav-trigger { color: var(--ink-body); display: flex; align-items: center; gap: 7px; cursor: pointer; padding: 6px 0; }
+.site-nav a, .site-nav .nav-trigger { position: relative; color: var(--ink-body); display: flex; align-items: center; gap: 7px; cursor: pointer; padding: 6px 0; }
+.site-nav a::after, .site-nav .nav-trigger::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--teal); transform: scaleX(0); transform-origin: left;
+  transition: transform .2s ease;
+}
+.site-nav a:hover::after, .site-nav .nav-trigger:hover::after,
+.site-nav .nav-trigger[aria-expanded="true"]::after { transform: scaleX(1); }
 .site-nav .current { color: var(--navy); font-weight: 600; }
 .site-nav .caret { display: inline-block; font-size: 13px; line-height: 1; color: var(--ink-meta); transition: transform .22s ease; }
 .nav-trigger[aria-expanded="true"] .caret { transform: rotate(180deg); }
@@ -89,7 +98,7 @@ header.site-header.scrolled { box-shadow: 0 10px 24px -18px rgba(35,64,110,.55);
 .mega-panel.open, .sectors-panel.open { opacity: 1; transform: translateY(0); visibility: visible; }
 .mega-inner {
   max-width: 1440px; margin: 0 auto; padding: 40px clamp(20px,4.5vw,64px) 44px;
-  display: grid; min-width: 0; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap: 34px 44px;
+  gap: 34px 44px;
 }
 .mega-col { display: flex; flex-direction: column; gap: 10px; }
 .mega-col .cat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); padding-bottom: 8px; border-bottom: 1px solid var(--hairline); }
@@ -99,7 +108,7 @@ header.site-header.scrolled { box-shadow: 0 10px 24px -18px rgba(35,64,110,.55);
 .mega-cta-card p { font-size: 13px; line-height: 1.55; color: var(--ink-support); margin: 0 0 16px; }
 .sectors-inner {
   max-width: 1440px; margin: 0 auto; padding: 26px clamp(20px,4.5vw,64px) 30px;
-  display: grid; min-width: 0; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap: 20px;
+  gap: 20px;
 }
 .sector-pick { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
 .sector-pick .name { font-size: 15px; font-weight: 600; color: var(--navy); }
@@ -119,6 +128,34 @@ header.site-header.scrolled { box-shadow: 0 10px 24px -18px rgba(35,64,110,.55);
 .divided-row { display: grid; min-width: 0; background: #fff; border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
 .divided-row > * { background: #fff; box-shadow: inset -1px 0 0 var(--hairline), inset 0 -1px 0 var(--hairline); }
 .divided-row > .accent { box-shadow: inset 0 3px 0 var(--gold), inset -1px 0 0 var(--hairline), inset 0 -1px 0 var(--hairline); }
+
+/* Fixed-count card/step grids. auto-fit's column count is a step function
+   of container width — for a small fixed item count there is ALWAYS some
+   width where it lands on a count that doesn't divide evenly, orphaning
+   the last row with a stretch of empty space (proven empirically: 4 items
+   at minmax(220px) held a clean 4 at 1312px and a clean 2 at 932px, but
+   landed on 3 - a 3+1 orphan - at 1164px, a completely ordinary laptop
+   width). These utilities replace auto-fit with an explicit count per
+   breakpoint tier instead, chosen so every tier divides the item count
+   evenly for THAT SPECIFIC item count — named by item count, not desktop
+   column count, since e.g. a 2-column tablet fallback is safe for 4 or 8
+   items but NOT for 3 (2+1 orphans). Only for grids with a small, fixed,
+   known-up-front child count — not visitor-driven/CMS content, where
+   auto-fit remains the right tool. */
+.grid-4items, .grid-6items, .grid-8items, .grid-3items {
+  display: grid; min-width: 0;
+}
+.grid-4items { grid-template-columns: repeat(2, 1fr); }   /* 4 = 2x2 always */
+.grid-6items { grid-template-columns: repeat(3, 1fr); }   /* 6 = 3x2 desktop */
+.grid-8items { grid-template-columns: repeat(4, 1fr); }   /* 8 = 4x2 desktop */
+.grid-3items { grid-template-columns: repeat(3, 1fr); }   /* 3 = stays 3 or drops to 1, never 2 */
+@media (max-width: 900px) {
+  .grid-6items { grid-template-columns: repeat(2, 1fr); } /* 6 = 3x2 tablet, still clean */
+  .grid-8items { grid-template-columns: repeat(2, 1fr); } /* 8 = 4x2 tablet, still clean */
+}
+@media (max-width: 600px) {
+  .grid-4items, .grid-6items, .grid-8items, .grid-3items { grid-template-columns: 1fr; }
+}
 
 /* 3. Row list — hairline rows, no outer card (FAQ / accordion) */
 .row-list { border-top: 1px solid var(--hairline-cream); }
@@ -174,7 +211,7 @@ header.site-header.scrolled { box-shadow: 0 10px 24px -18px rgba(35,64,110,.55);
 footer.site-footer { background: var(--page); border-top: 1px solid var(--hairline); }
 .footer-cols {
   max-width: 1440px; margin: 0 auto; padding: clamp(20px,4.5vw,64px) 64px 28px;
-  display: grid; min-width: 0; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap: clamp(28px,3.5vw,56px);
+  gap: clamp(28px,3.5vw,56px);
 }
 .footer-cols a { font-size: 14px; color: var(--ink-support); }
 .footer-col-title { font-size: 13px; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; }
