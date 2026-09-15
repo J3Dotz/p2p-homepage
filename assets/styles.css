@@ -187,6 +187,47 @@ footer.site-footer { background: var(--page); border-top: 1px solid var(--hairli
 
 input, textarea, select { font-family: 'Poppins', sans-serif; }
 
+/* ── Mobile nav (hamburger + accordion drawer) — hidden on desktop ─────── */
+.mobile-menu-toggle {
+  display: none; background: none; border: none; cursor: pointer; padding: 8px;
+  flex-direction: column; justify-content: center; gap: 5px; flex: none;
+}
+.mobile-menu-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav { display: none; }
+.mobile-nav-inner { display: flex; flex-direction: column; gap: 2px; padding: 12px clamp(20px,4.5vw,64px) 28px; }
+.mobile-nav-link { padding: 14px 4px; font-size: 16px; font-weight: 500; color: var(--ink-body); border-bottom: 1px solid var(--hairline); }
+.mobile-accordion-toggle {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  background: none; border: none; padding: 14px 4px; font-size: 16px; font-weight: 500;
+  color: var(--ink-body); border-bottom: 1px solid var(--hairline); cursor: pointer;
+  font-family: 'Poppins', sans-serif; text-align: left;
+}
+.mobile-accordion-toggle .caret { display: inline-block; transition: transform .2s ease; color: var(--ink-meta); }
+.mobile-accordion-toggle[aria-expanded="true"] .caret { transform: rotate(180deg); }
+.mobile-accordion-panel { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+.mobile-accordion-panel.open { max-height: 1000px; }
+.mobile-accordion-panel .cat-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin: 16px 0 6px 4px; }
+.mobile-accordion-panel a { display: block; padding: 9px 4px; font-size: 15px; color: var(--ink-body); }
+.mobile-nav-cta { display: block; text-align: center; margin-top: 18px; }
+
 @media (max-width: 900px) {
-  .site-nav { display: none; }
+  .site-nav, header.site-header .header-cta { display: none; }
+  .mobile-menu-toggle { display: flex; }
+  .mobile-nav { display: block; max-height: 0; overflow: hidden; background: #fff; border-bottom: 1px solid var(--hairline); transition: max-height .3s ease; }
+  .mobile-nav.open { max-height: 80vh; overflow-y: auto; }
+  header.site-header { padding: 16px clamp(20px,4.5vw,64px); }
+}
+
+/* A long CTA label (e.g. "Get Your Free Data Protection Audit") stays on
+   one line via white-space:nowrap above — that overflows a phone-width
+   screen, so let it wrap there instead. */
+@media (max-width: 600px) {
+  .cta-gold { white-space: normal; max-width: 100%; }
+  /* section-header rows pairing a heading with a nowrap side-label: let
+     the row wrap instead of forcing the nowrap label off-screen */
+  .ph-row { flex-wrap: wrap; }
 }

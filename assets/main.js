@@ -48,6 +48,36 @@
     });
   }
 
+  // ── Mobile nav: hamburger toggle + Services/Sectors accordions ────────
+  var mobileToggle = document.querySelector('.mobile-menu-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  if (mobileToggle && mobileNav) {
+    mobileToggle.addEventListener('click', function () {
+      var open = mobileNav.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+        mobileNav.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900 && mobileNav.classList.contains('open')) {
+        mobileNav.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+  document.querySelectorAll('.mobile-accordion-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (panel) panel.classList.toggle('open', !open);
+    });
+  });
+
   // ── Scroll reveal ──────────────────────────────────────────────────────
   var revealEls = document.querySelectorAll('[data-reveal]');
   if (reduced || !('IntersectionObserver' in window)) {
